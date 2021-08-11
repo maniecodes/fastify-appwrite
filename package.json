@@ -1,7 +1,8 @@
 {
-  "name": "test",
+  "name": "fastify-appwrite",
+  "homepage": "https://appwrite.io/support",
+  "description": "Appwrite is an open-source self-hosted backend server that abstract and simplify complex and repetitive development tasks behind a very simple REST API",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "directories": {
     "test": "test"
@@ -18,8 +19,11 @@
   "license": "MIT",
   "types": "index.d.ts",
   "dependencies": {
+    "axios": "^0.21.1",
     "fastify": "^3.20.1",
-    "fastify-plugin": "^3.0.0"
+    "fastify-autoload": "^3.8.0",
+    "fastify-plugin": "^3.0.0",
+    "form-data": "^4.0.0"
   },
   "devDependencies": {
     "@types/node": "^15.0.0",
