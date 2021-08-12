@@ -1,15 +1,15 @@
 {
-  "name": "fastify-appwrite",
+  "name": "@dev-manny/fastify-appwrite",
   "homepage": "https://github.com/Dev-Manny/fastify-appwrite",
   "description": "Appwrite is an open-source self-hosted backend server that abstract and simplify complex and repetitive development tasks behind a very simple REST API",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "main": "index.js",
   "directories": {
     "test": "test"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/Dev-Manny/fastify-appwrite"
+    "url": "git://github.com/Dev-Manny/fastify-appwrite.git"
   },
   "scripts": {
     "test": "npm run unit && npm run test:typescript",
