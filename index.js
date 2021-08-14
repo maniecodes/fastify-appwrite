@@ -11,11 +11,14 @@ function plugin(fastify, opts, done) {
   const user = new Users(client);
   const account = new Account(client);
   const database = new Database(client);
+  const teams = new teams(client);
+
   try {
     fastify.decorate("client", client);
     fastify.decorate("user", user);
     fastify.decorate("account", account);
     fastify.decorate("database", database);
+    fastify.decorate("teams", teams);
 
     done();
   } catch (error) {
