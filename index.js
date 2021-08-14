@@ -5,13 +5,14 @@ const Client = require("./lib/client");
 const Users = require("./lib/services/users");
 const Account = require("./lib/services/account");
 const Database = require("./lib/services/database");
+const Teams = require("./lib/services/teams");
 
 function plugin(fastify, opts, done) {
   const client = new Client();
   const user = new Users(client);
   const account = new Account(client);
   const database = new Database(client);
-  const teams = new teams(client);
+  const teams = new Teams(client);
 
   try {
     fastify.decorate("client", client);
