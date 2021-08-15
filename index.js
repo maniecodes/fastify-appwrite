@@ -10,7 +10,6 @@ const Storage = require("./lib/services/storage");
 const Functions = require("./lib/services/storage");
 const Health = require("./lib/services/health");
 
-
 function plugin(fastify, opts, done) {
   const client = new Client();
   const user = new Users(client);
@@ -21,15 +20,19 @@ function plugin(fastify, opts, done) {
   const functions = new Functions(client);
   const health = new Health(client);
 
+  const appwrite = {
+    client: client,
+    user: user,
+    account: account,
+    database: database,
+    teams: teams,
+    storage: storage,
+    functions: functions,
+    health: health,
+  };
+
   try {
-    fastify.decorate("client", client);
-    fastify.decorate("user", user);
-    fastify.decorate("account", account);
-    fastify.decorate("database", database);
-    fastify.decorate("teams", teams);
-    fastify.decorate("storage", storage);
-    fastify.decorate("functions", functions);
-    fastify, decorate("health", health);
+    fastify.decorate("appwrite", appwrite);
 
     done();
   } catch (error) {

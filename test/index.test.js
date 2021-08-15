@@ -11,7 +11,7 @@ test("testing client", async (t) => {
 
   console.log(app.hasDecorator("client"));
 
-  t.same(app.client, {
+  t.same(app.appwrite.client, {
     endpoint: "https://appwrite.io/v1",
     headers: {
       "content-type": "",
@@ -32,14 +32,14 @@ test("testing user already exist", async (t) => {
 
   await app.ready();
 
-  app.client
+  app.appwrite.client
     .setEndpoint("http://localhost:4003/v1")
     .setProject("611274fe2b683")
     .setKey(
       "85dfd135face9124586ac3ece5b5ed6452f304f95a0f24e3022a57d0818d4ae5c171dd85e367ab32c606344b2b927e31cf596b59d069ae9b34120c36642d7a0df6730e3b82638d7967586ee2a8ed59f9db67dc4ec3e64d3067f6e9000799275f3bdbdb65d5bf0b54ddd31facaeb77bea62d0a5974a647587bbcc785e7f81935f"
     );
 
-  res = await app.user.create("nuth@gmail.com", "", "manasseh");
+  res = await app.appwrite.user.create("nuth@gmail.com", "", "manasseh");
 
   t.same(res.status, 409);
 });
@@ -54,16 +54,19 @@ test("Create a new user", async (t) => {
 
   await app.ready();
 
-  app.client
+  app.appwrite.client
     .setEndpoint("http://localhost:4003/v1")
     .setProject("611274fe2b683")
     .setKey(
       "85dfd135face9124586ac3ece5b5ed6452f304f95a0f24e3022a57d0818d4ae5c171dd85e367ab32c606344b2b927e31cf596b59d069ae9b34120c36642d7a0df6730e3b82638d7967586ee2a8ed59f9db67dc4ec3e64d3067f6e9000799275f3bdbdb65d5bf0b54ddd31facaeb77bea62d0a5974a647587bbcc785e7f81935f"
     );
 
-  res = await app.user.create("nutdh@gmail.com", "", "manasseh");
-  if(res.status == 201){
-
+  res = await app.appwrite.user.create(
+    "nuetdh@gmail.com",
+    "hisdi988",
+    "manasseh"
+  );
+  if (res.status == 201) {
   }
 
   t.same(res.status, 201);
@@ -79,14 +82,14 @@ test("Get a user", async (t) => {
 
   await app.ready();
 
-  app.client
+  app.appwrite.client
     .setEndpoint("http://localhost:4003/v1")
     .setProject("611274fe2b683")
     .setKey(
       "85dfd135face9124586ac3ece5b5ed6452f304f95a0f24e3022a57d0818d4ae5c171dd85e367ab32c606344b2b927e31cf596b59d069ae9b34120c36642d7a0df6730e3b82638d7967586ee2a8ed59f9db67dc4ec3e64d3067f6e9000799275f3bdbdb65d5bf0b54ddd31facaeb77bea62d0a5974a647587bbcc785e7f81935f"
     );
 
-  res = await app.user.get("611430663d26c");
+  res = await app.appwrite.user.get("611430663d26c");
   console.log(res);
 
   t.same(res.status, 200);
@@ -102,14 +105,14 @@ test("Delete a user", async (t) => {
 
   await app.ready();
 
-  app.client
+  app.appwrite.client
     .setEndpoint("http://localhost:4003/v1")
     .setProject("611274fe2b683")
     .setKey(
       "85dfd135face9124586ac3ece5b5ed6452f304f95a0f24e3022a57d0818d4ae5c171dd85e367ab32c606344b2b927e31cf596b59d069ae9b34120c36642d7a0df6730e3b82638d7967586ee2a8ed59f9db67dc4ec3e64d3067f6e9000799275f3bdbdb65d5bf0b54ddd31facaeb77bea62d0a5974a647587bbcc785e7f81935f"
     );
 
-  res = await app.user.delete("611430e8c762e");
+  res = await app.appwrite.user.delete("611430e8c762e");
   console.log(res);
 
   t.same(res.status, 204);
@@ -125,14 +128,14 @@ test("Get User Logs", async (t) => {
 
   await app.ready();
 
-  app.client
+  app.appwrite.client
     .setEndpoint("http://localhost:4003/v1")
     .setProject("611274fe2b683")
     .setKey(
       "85dfd135face9124586ac3ece5b5ed6452f304f95a0f24e3022a57d0818d4ae5c171dd85e367ab32c606344b2b927e31cf596b59d069ae9b34120c36642d7a0df6730e3b82638d7967586ee2a8ed59f9db67dc4ec3e64d3067f6e9000799275f3bdbdb65d5bf0b54ddd31facaeb77bea62d0a5974a647587bbcc785e7f81935f"
     );
 
-  res = await app.user.getLogs("611430663d26c");
+  res = await app.appwrite.user.getLogs("611430663d26c");
   console.log(res);
 
   t.same(res.status, 200);
@@ -148,14 +151,14 @@ test("Get User Prefs", async (t) => {
 
   await app.ready();
 
-  app.client
+  app.appwrite.client
     .setEndpoint("http://localhost:4003/v1")
     .setProject("611274fe2b683")
     .setKey(
       "85dfd135face9124586ac3ece5b5ed6452f304f95a0f24e3022a57d0818d4ae5c171dd85e367ab32c606344b2b927e31cf596b59d069ae9b34120c36642d7a0df6730e3b82638d7967586ee2a8ed59f9db67dc4ec3e64d3067f6e9000799275f3bdbdb65d5bf0b54ddd31facaeb77bea62d0a5974a647587bbcc785e7f81935f"
     );
 
-  res = await app.user.getPrefs("611430663d26c");
+  res = await app.appwrite.user.getPrefs("611430663d26c");
   console.log(res);
 
   t.same(res.status, 200);
@@ -171,14 +174,14 @@ test("Update User Prefs", async (t) => {
 
   await app.ready();
 
-  app.client
+  app.appwrite.client
     .setEndpoint("http://localhost:4003/v1")
     .setProject("611274fe2b683")
     .setKey(
       "85dfd135face9124586ac3ece5b5ed6452f304f95a0f24e3022a57d0818d4ae5c171dd85e367ab32c606344b2b927e31cf596b59d069ae9b34120c36642d7a0df6730e3b82638d7967586ee2a8ed59f9db67dc4ec3e64d3067f6e9000799275f3bdbdb65d5bf0b54ddd31facaeb77bea62d0a5974a647587bbcc785e7f81935f"
     );
 
-  res = await app.user.getPrefs("611430663d26c");
+  res = await app.appwrite.user.getPrefs("611430663d26c");
   console.log(res);
 
   t.same(res.status, 200);
@@ -194,14 +197,14 @@ test("Get user session", async (t) => {
 
   await app.ready();
 
-  app.client
+  app.appwrite.client
     .setEndpoint("http://localhost:4003/v1")
     .setProject("611274fe2b683")
     .setKey(
       "85dfd135face9124586ac3ece5b5ed6452f304f95a0f24e3022a57d0818d4ae5c171dd85e367ab32c606344b2b927e31cf596b59d069ae9b34120c36642d7a0df6730e3b82638d7967586ee2a8ed59f9db67dc4ec3e64d3067f6e9000799275f3bdbdb65d5bf0b54ddd31facaeb77bea62d0a5974a647587bbcc785e7f81935f"
     );
 
-  res = await app.user.getSessions("611430663d26c");
+  res = await app.appwrite.user.getSessions("611430663d26c");
   console.log(res);
 
   t.same(res.status, 200);
@@ -217,14 +220,14 @@ test("Delete user session", async (t) => {
 
   await app.ready();
 
-  app.client
+  app.appwrite.client
     .setEndpoint("http://localhost:4003/v1")
     .setProject("611274fe2b683")
     .setKey(
       "85dfd135face9124586ac3ece5b5ed6452f304f95a0f24e3022a57d0818d4ae5c171dd85e367ab32c606344b2b927e31cf596b59d069ae9b34120c36642d7a0df6730e3b82638d7967586ee2a8ed59f9db67dc4ec3e64d3067f6e9000799275f3bdbdb65d5bf0b54ddd31facaeb77bea62d0a5974a647587bbcc785e7f81935f"
     );
 
-  res = await app.user.getSessions("611430663d26c");
+  res = await app.appwrite.user.getSessions("611430663d26c");
   console.log(res);
 
   t.same(res.status, 200);
@@ -240,14 +243,14 @@ test("Update user status", async (t) => {
 
   await app.ready();
 
-  app.client
+  app.appwrite.client
     .setEndpoint("http://localhost:4003/v1")
     .setProject("611274fe2b683")
     .setKey(
       "85dfd135face9124586ac3ece5b5ed6452f304f95a0f24e3022a57d0818d4ae5c171dd85e367ab32c606344b2b927e31cf596b59d069ae9b34120c36642d7a0df6730e3b82638d7967586ee2a8ed59f9db67dc4ec3e64d3067f6e9000799275f3bdbdb65d5bf0b54ddd31facaeb77bea62d0a5974a647587bbcc785e7f81935f"
     );
 
-  res = await app.user.updateStatus("611430663d26c", 1);
+  res = await app.appwrite.user.updateStatus("611430663d26c", 1);
   console.log(res);
 
   t.same(res.status, 200);
@@ -263,16 +266,15 @@ test("Update user verification", async (t) => {
 
   await app.ready();
 
-  app.client
+  app.appwrite.client
     .setEndpoint("http://localhost:4003/v1")
     .setProject("611274fe2b683")
     .setKey(
       "85dfd135face9124586ac3ece5b5ed6452f304f95a0f24e3022a57d0818d4ae5c171dd85e367ab32c606344b2b927e31cf596b59d069ae9b34120c36642d7a0df6730e3b82638d7967586ee2a8ed59f9db67dc4ec3e64d3067f6e9000799275f3bdbdb65d5bf0b54ddd31facaeb77bea62d0a5974a647587bbcc785e7f81935f"
     );
 
-  res = await app.user.updateVerification("611430663d26c", false);
+  res = await app.appwrite.user.updateVerification("611430663d26c", false);
   console.log(res);
 
   t.same(res.status, 200);
 });
-
