@@ -8,6 +8,8 @@ const Database = require("./lib/services/database");
 const Teams = require("./lib/services/teams");
 const Storage = require("./lib/services/storage");
 const Functions = require("./lib/services/storage");
+const Health = require("./lib/services/health");
+
 
 function plugin(fastify, opts, done) {
   const client = new Client();
@@ -17,6 +19,7 @@ function plugin(fastify, opts, done) {
   const teams = new Teams(client);
   const storage = new Storage(client);
   const functions = new Functions(client);
+  const health = new Health(client);
 
   try {
     fastify.decorate("client", client);
@@ -26,6 +29,7 @@ function plugin(fastify, opts, done) {
     fastify.decorate("teams", teams);
     fastify.decorate("storage", storage);
     fastify.decorate("functions", functions);
+    fastify, decorate("health", health);
 
     done();
   } catch (error) {
