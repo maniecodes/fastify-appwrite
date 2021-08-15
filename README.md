@@ -36,7 +36,7 @@ const start = async () => {
 
   try {
     await fastify.listen(3000);
-    await fastify.client
+    await fastify.appwrite.client
       .setEndpoint("https://[HOSTNAME_OR_IP]/v1") // Your API Endpoint
       .setProject("5df5acd0d48c2") // Your project ID
       .setKey("919c2d18fb5d4...a2ae413da83346ad2") // Your secret API key
@@ -101,7 +101,7 @@ const getUsersOpts = {
 async function userRoutes(fastify, opts) {
   fastify.post("/users", postUserOpts, async (req, reply) => {
     const { email, password, name } = req.body;
-    const result = await fastify.user.create(email, password, name);
+    const result = await fastify.appwrite.user.create(email, password, name);
     if (result.status != 201) {
       return reply.code(result.status).send(result.data);
     }
@@ -109,7 +109,7 @@ async function userRoutes(fastify, opts) {
   });
 
   fastify.get("/users", getUsersOpts, async (req, reply) => {
-    const result = await fastify.user.list();
+    const result = await fastify.appwrite.user.list();
     reply.code(result.status).send(result.response.users);
   });
 }
@@ -123,7 +123,7 @@ The Appwrite Fastify plugin raises `AppwriteException` object with `message`, `c
 
 ```js
 try {
-  let res = await fastify.users.create("email@example.com", "password");
+  let res = await fastify.appwrite.users.create("email@example.com", "password");
 } catch (e) {
   console.log(e.message);
 }
