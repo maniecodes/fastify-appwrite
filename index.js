@@ -10,6 +10,7 @@ const Storage = require("./lib/services/storage");
 const Functions = require("./lib/services/storage");
 const Health = require("./lib/services/health");
 const Avatars = require("./lib/services/avatars");
+const Locale = require("./lib/services/locale");
 
 function plugin(fastify, opts, done) {
   const client = new Client();
@@ -21,6 +22,7 @@ function plugin(fastify, opts, done) {
   const functions = new Functions(client);
   const health = new Health(client);
   const avatars = new Avatars(client);
+  const locale = new Locale(client);
 
   const appwrite = {
     client: client,
@@ -32,6 +34,7 @@ function plugin(fastify, opts, done) {
     functions: functions,
     health: health,
     avatars: avatars,
+    locale: locale,
   };
 
   try {
